@@ -1,0 +1,40 @@
+.acquainted {
+    width: 100%;
+    height: 100vh;
+}
+.acquainted-container {
+    @include container;
+}
+.acquainted-title {
+    margin-bottom: 4.25rem;
+}
+.acquainted-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 17.8125rem;
+}
+.acquainted-pic-block {
+    height: 100%;
+    width: 39.94%;
+    text-align: center;
+    margin-right: 1.875rem;
+}
+.acquainted-pic-block__img {
+    height: 100%;
+    width: 88.31%;
+}
+.acquainted-descript__title {
+    font-size: 1.5rem;
+    margin-bottom: 1.875rem;
+}
+.acquainted-descript {
+    flex: 1;
+}
+.acquainted-descript p {
+    font-size: 1rem;
+    margin-bottom: 2.1875rem;
+    line-height: 1.5rem;
+    text-align: justify;
+}

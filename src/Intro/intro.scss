@@ -1,0 +1,25 @@
+.intro {
+    width: 100%;
+    height: 100vh;
+    background: url(../assets/banner-photo.jpg) center center / cover no-repeat;
+}
+.intro-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.intro-container h1 {
+    font-size: 3.125rem;
+    color: white;
+    line-height: 3.375rem;
+    text-transform: uppercase;
+    width: 55%;
+    margin-bottom: 1.875rem;
+}
+.intro-container p {
+    font-size: 1rem;
+    color: white;
+    line-height: 1.5rem;
+    width: 65%;
+    margin-bottom: 1.875rem;
+}
