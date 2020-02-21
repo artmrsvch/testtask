@@ -1,48 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import RadioBlock from "./RadiobuttonsBlock";
+import InputBlock from "./InputBlock";
+import FileInp from "./FileLoader";
+import { useDispatch, useSelector } from "react-redux";
+import { positionRequest, fetchRegisterRequest, getTokenRequst } from "../modules/actions";
 import { Form, Field } from "react-final-form";
 
 function FormRegister() {
-    const submit = obj => {
-        console.log(obj);
+    const [state, setState] = useState();
+    const dispatch = useDispatch();
+    const { positions, token } = useSelector(stateSelect => stateSelect);
+
+    const loadFile = file => setState(file);
+    const submit = ({ name, email, phone, position_id }) => {
+        const formData = new FormData();
+        formData.append("position_id", position_id);
+        formData.append("name", name);
+        formData.append("email", email);
+        formData.append("phone", `+${phone}`);
+        formData.append("photo", state);
+
+        dispatch(fetchRegisterRequest({ formData, token }));
     };
-    const InputBlock = ({ input, label, placeholder, meta }) => {
-        return (
-            <>
-                <label className="main-fields__label">{label}</label>
-                <input className="main-fields__inp" placeholder={placeholder} {...input} />
-                {meta.error && meta.visited && !meta.active && (
-                    <div style={{ fontSize: "12px", color: "red" }}>{meta.error}</div>
-                )}
-            </>
-        );
+    const validateInputs = values => {
+        const errors = {};
+        if (!values.name) errors.name = "Name is requaired";
+        if (!values.email) errors.email = "Email is requaired";
+        if (!values.phone) errors.phone = "Phone is requaired";
+        if (!values.position_id) errors.position_id = "Position is requaired";
+        if (!values.photo) errors.photo = "Photo is requaired";
+        if (values.phone) {
+            const regExp = /^[\+]{0,1}380([0-9]{9})$/;
+            const bool = regExp.test(values.phone);
+            if (!bool) errors.phone = "The number must correspond to 380XXXXXXX";
+        }
+        if (values.name) {
+            if (values.name.length < 2 || values.name.length > 60) {
+                errors.name = "Username should contain 2-60 characters";
+            }
+        }
+        if (values.email) {
+            const regExp = /^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i;
+            const bool = regExp.test(values.email);
+            if (!bool) errors.email = "The email must be a valid email address.";
+        }
+
+        return errors;
     };
-    const RadioBlock = ({ input, label }) => {
-        return (
-            <label className="select-position__label">
-                <input {...input} className="select-position__radio" />
-                <span class="radio-style"></span>
-                <span className="select-position__radio-descript">{label}</span>
-            </label>
-        );
-    };
-    const FileInp = ({ input }) => {
-        return (
-            <div class="field__wrapper">
-                <input {...input} className="field field__file" id="input__file" />
-                <label className="field__file-wrapper" for="input__file">
-                    <div className="field__file-fake">Upload your photo</div>
-                    <div className="field__file-button">Browse</div>
-                </label>
-            </div>
-        );
-    };
+    useEffect(() => {
+        dispatch(positionRequest());
+        dispatch(getTokenRequst());
+    }, []);
     return (
         <section className="section form-section">
             <div className="container form-container">
                 <h2 className="title form-title">Register to get a work</h2>
                 <Form
                     onSubmit={submit}
-                    render={({ handleSubmit }) => (
+                    validate={validateInputs}
+                    render={({ handleSubmit, invalid }) => (
                         <form className="form" onSubmit={handleSubmit}>
                             <div className="main-fields">
                                 <Field
@@ -62,7 +78,7 @@ function FormRegister() {
                                 <Field
                                     component={InputBlock}
                                     label="Phone number"
-                                    type="phone"
+                                    type="number"
                                     name="phone"
                                     placeholder="+380 XX XXX XX XX"
                                 />
@@ -71,42 +87,31 @@ function FormRegister() {
                                 <label className="select-position__headline">
                                     Select your position
                                 </label>
-                                <Field
-                                    component={RadioBlock}
-                                    type="radio"
-                                    name="position_id"
-                                    value="1"
-                                    label="Frontend developer"
-                                />
-                                <Field
-                                    component={RadioBlock}
-                                    type="radio"
-                                    name="position_id"
-                                    value="2"
-                                    label="Backend developer"
-                                />
-                                <Field
-                                    component={RadioBlock}
-                                    type="radio"
-                                    name="position_id"
-                                    value="3"
-                                    label="Designer"
-                                />
-                                <Field
-                                    component={RadioBlock}
-                                    type="radio"
-                                    name="position_id"
-                                    value="4"
-                                    label="QA"
-                                />
+                                {positions.map(({ id, name }) => (
+                                    <Field
+                                        key={id}
+                                        component={RadioBlock}
+                                        type="radio"
+                                        name="position_id"
+                                        value={`${id}`}
+                                        label={name}
+                                    />
+                                ))}
                             </div>
                             <div className="upload-photo">
                                 <label className="upload-photo__label">Photo</label>
-                                <Field component={FileInp} type="file" name="file" />
+                                <Field
+                                    loadFile={loadFile}
+                                    component={FileInp}
+                                    type="file"
+                                    name="photo"
+                                    accept="image/*"
+                                />
                             </div>
-
                             <div className="btn-wrap">
-                                <button className="btn">Sign up now</button>
+                                <button type="submit" disabled={invalid} className="btn">
+                                    {invalid ? "Fill all fields" : "Sign up now"}
+                                </button>
                             </div>
                         </form>
                     )}
@@ -117,9 +122,3 @@ function FormRegister() {
 }
 
 export default FormRegister;
-/* 
-<label class="radio-label">
-    <input type="radio" name="rbt" class="form-radiobutton">
-    <span class="radio-style"></span>
-    <span class="radio-text">Потребуется сдача</span>
-</label>*/
