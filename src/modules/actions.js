@@ -1,6 +1,11 @@
 import { createAction } from "redux-actions";
 
-export const fetchUserRequest = createAction("FETCH_USER_REQUEST");
+export const getUserRequest = createAction("GET_USER_REQUEST");
+export const getUserSuccess = createAction("GET_USER_SUCCESS");
+
+export const getUserIDRequest = createAction("GET_USER_ID_REQUEST");
+export const getUserIDSuccess = createAction("GET_USER_ID_SUCCESS");
+
 export const fetchRegisterRequest = createAction("FETCH_REGISTER_REQUEST");
 
 export const positionRequest = createAction("POSITION_REQUEST");

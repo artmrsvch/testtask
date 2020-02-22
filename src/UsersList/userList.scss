@@ -11,48 +11,68 @@
     margin-bottom: 7.5rem;
 }
 .user-list {
+    display: grid;
+    grid-template-columns: rem(200px) rem(200px) rem(200px);
+    grid-row-gap: rem(60px);
     width: 100%;
-    height: 36.5rem;
-    flex-wrap: wrap;
-    display: flex;
     justify-content: space-between;
-    align-content: space-between;
     margin-bottom: 2.5rem;
 }
 .user-list__item {
+    position: relative;
     width: 20.75%;
+    max-width: 20.75%;
     min-width: 12.5rem;
     display: flex;
     letter-spacing: -0.3px;
     flex-direction: column;
     text-align: center;
     align-items: center;
-    margin-right: 1.25rem;
-    &:last-child {
-        margin-right: 0;
-    }
-    &:nth-child(3) {
-        margin-right: 0;
-    }
 }
 .user-list__wrap-pic {
     width: 4.375rem;
     height: 4.375rem;
-
     margin-bottom: 0.25rem;
 }
 .user-list__img {
     width: 100%;
     height: 100%;
+    border: 2px solid white;
     border-radius: 50%;
+    background: url(../assets/photo-cover.png) center center / cover no-repeat;
 }
 .user-list__name {
     font-size: 1.5rem;
     margin-bottom: 0.3125rem;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.user-list__phone-number {
+    color: $lightBlack;
 }
 .user-list__position {
+    color: $lightBlack;
     margin-bottom: 0.35rem;
 }
 .user-list__email {
+    color: $lightBlack;
     margin-bottom: 0.35rem;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tooltip {
+    position: absolute;
+    bottom: -15%;
+    background-color: $lightBlack;
+    color: $tooltipWhite;
+    border-radius: 4px;
+    display: none;
+}
+.user-list__name:hover ~ .tooltip-name {
+    display: block;
+}
+.user-list__email:hover ~ .tooltip-email {
+    display: block;
 }

@@ -1,7 +1,7 @@
 import { handleActions } from "redux-actions";
 import { combineReducers } from "redux";
 import {
-    fetchUserRequest,
+    getUserSuccess,
     fetchFailure,
     fetchSuccess,
     fetchRegisterRequest,
@@ -9,11 +9,23 @@ import {
     tokenSuccess
 } from "./actions";
 
-const userList = handleActions(
+const users = handleActions(
     {
-        [fetchUserRequest]: (_state, action) => action.payload
+        [getUserSuccess]: (state, action) => {
+            if (!state.users) {
+                return action.payload;
+            } else {
+                // сортировка по дате
+                const newArrUsers = state.users.concat(action.payload.users);
+                newArrUsers.sort((a, b) =>
+                    a.registration_timestamp > b.registration_timestamp ? -1 : 1
+                );
+                action.payload.users = newArrUsers;
+                return action.payload;
+            }
+        }
     },
-    []
+    { links: "" } // меньшее зло, чтобы не плодить код проверки для скрытия кнопки
 );
 const positions = handleActions(
     {
@@ -42,7 +54,7 @@ const isLoggedIn = handleActions(
     false
 );
 export default combineReducers({
-    userList,
+    users,
     isLoggedIn,
     positions,
     newUser,
