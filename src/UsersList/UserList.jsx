@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserRequest } from "../modules/actions";
+import { getUserRequest, resetUserRequest } from "../modules/actions";
 
 function UserList() {
     const dispatch = useDispatch();
-    const { users } = useSelector(stateSelect => stateSelect);
+    const { users, isLoggedIn } = useSelector(stateSelect => stateSelect);
 
     const handleClick = () => {
         users.links.next_url && dispatch(getUserRequest(users.links.next_url));
     };
     const setTooltipText = ({ target }) => {
         if (target.offsetWidth < target.scrollWidth) {
-            const tooltip = target.classList.contains("user-list__name") //не лучшее решение, знаю
+            const tooltip = target.classList.contains("user-list__name")
                 ? target.parentNode.children[5]
                 : target.parentNode.children[6];
             target.style.cursor = "pointer";
@@ -19,6 +19,9 @@ function UserList() {
             tooltip.textContent = target.textContent;
         }
     };
+    useEffect(() => {
+        isLoggedIn && dispatch(resetUserRequest());
+    }, [isLoggedIn]);
     useEffect(() => {
         dispatch(getUserRequest());
     }, []);

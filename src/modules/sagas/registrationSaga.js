@@ -1,17 +1,17 @@
 import { takeEvery, call, put } from "redux-saga/effects";
-import { fetchFailure, fetchRegisterRequest, fetchSuccess } from "../actions";
+import { fetchRegisterFailure, fetchRegisterRequest, fetchRegisterSuccess } from "../actions";
 
 export function* registrationSaga() {
     yield takeEvery(fetchRegisterRequest, function*({ payload }) {
         try {
             const result = yield call(regRequest, payload);
             if (result.success) {
-                yield put(fetchSuccess(result.user_id));
+                yield put(fetchRegisterSuccess(result));
             } else {
                 throw result;
             }
         } catch (error) {
-            yield put(fetchFailure(error.message));
+            yield put(fetchRegisterFailure(error));
         }
     });
 }

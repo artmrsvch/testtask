@@ -6,10 +6,7 @@ function FileInp({ input, loadFile, accept, meta }) {
     const changedFile = e => {
         if (e.target.files[0]) {
             if (e.target.files[0].size > 5242880) {
-                //валидируем размер на фронте
                 setState({ ...state, error: "The photo may not be greater than 5 Mbytes." });
-            } else if (e.target.files[0].size < 22500) {
-                setState({ ...state, error: "Minimum size of photo 70x70px." });
             } else {
                 setState({ ...state, error: null, name: e.target.files[0].name }); // вывод имени в поле кастомного инпута
                 input.onChange(e); // запускаем нативное событие react-final-form
