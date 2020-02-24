@@ -1,9 +1,14 @@
 .acquainted {
     width: 100%;
     height: 100vh;
+    @include phones {
+        height: auto;
+        min-height: 100vh;
+    }
 }
 .acquainted-container {
     @include container;
+    padding: rem(80px) rem(15px);
 }
 .acquainted-title {
     margin-bottom: 4.25rem;
@@ -26,6 +31,10 @@
     width: 39.94%;
     text-align: center;
     margin-right: 1.875rem;
+    @include phones {
+        margin-right: 0;
+        width: 100%;
+    }
 }
 .acquainted-pic-block__img {
     height: 100%;
@@ -34,6 +43,9 @@
 .acquainted-descript__title {
     font-size: 1.5rem;
     margin-bottom: 1.875rem;
+    @include phones {
+        text-align: center;
+    }
 }
 .acquainted-descript {
     flex: 1;
@@ -49,4 +61,6 @@
     margin-bottom: 2.1875rem;
     line-height: 1.5rem;
     text-align: justify;
+    @include phones {
+    }
 }

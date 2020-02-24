@@ -38,6 +38,9 @@
     height: rem(60px);
     width: 100%;
     border-bottom: 1px solid $lightGrey;
+    @include phones {
+        height: rem(40px);
+    }
 }
 .gamb-container {
     box-sizing: border-box;

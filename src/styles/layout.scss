@@ -42,17 +42,24 @@ input[type="radio" i] {
     margin: 0 auto;
 }
 .container {
-    box-sizing: border-box;
-    padding: 0 30px;
-    width: rem(1024px);
+    padding: 0 rem(30px);
+    width: rem(964px);
     @include tablets {
-        width: rem(768px);
+        width: rem(708px);
+    }
+    @include phones {
+        width: 91.67%;
+        padding: 0 rem(15px);
     }
 }
 .title {
     font-size: 3.125rem;
     color: black;
     line-height: 3.375rem;
+    @include phones {
+        font-size: rem(30px);
+        line-height: rem(50px);
+    }
 }
 .section {
     display: flex;

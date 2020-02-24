@@ -26,9 +26,9 @@ function Acquainted() {
                             (gulp/webpack) you will get bonus points as well. Slice service
                             directory page P​SD mockup​ into HTML5/CSS3.
                         </p>
-                        <button className="btn btn_no-background" type="button">
+                        <a href="#signUp" className="btn btn_no-background" type="button">
                             Sign up now
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

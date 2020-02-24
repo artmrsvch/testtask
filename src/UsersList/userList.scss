@@ -9,12 +9,18 @@
     @include tablets {
         padding: rem(120px) rem(30px);
     }
+    @include phones {
+        padding: rem(80px) rem(15px);
+    }
 }
 .userList-title {
     margin-bottom: 7.5rem;
     @include imediate {
         margin-bottom: rem(48px);
         text-align: center;
+    }
+    @include phones {
+        margin-bottom: rem(75px);
     }
 }
 .user-list {
@@ -26,6 +32,11 @@
     margin-bottom: 2.5rem;
     @include imediate {
         grid-template-columns: rem(200px) rem(200px);
+    }
+    @include phones {
+        grid-template-columns: rem(200px);
+        grid-row-gap: rem(40px);
+        justify-content: center;
     }
 }
 .user-list__item {

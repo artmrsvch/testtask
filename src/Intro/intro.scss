@@ -8,6 +8,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @include phones {
+        padding-top: rem(40px);
+        text-align: center;
+        align-items: center;
+    }
 }
 .intro-container h1 {
     font-size: rem(50px);
@@ -25,11 +30,29 @@
     @include imediate {
         width: auto;
     }
+    @include phones {
+        width: 100%;
+        font-size: rem(30px);
+        line-height: 2.3rem;
+    }
 }
-.intro-container p {
+.intro__descript {
     font-size: 1rem;
     color: white;
     line-height: 1.5rem;
     width: 65%;
     margin-bottom: 1.875rem;
+
+    &_full {
+        @include phones {
+            display: none;
+        }
+    }
+    &_media {
+        display: none;
+        @include phones {
+            width: 100%;
+            display: flex;
+        }
+    }
 }
