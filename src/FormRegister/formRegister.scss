@@ -5,17 +5,24 @@
 .form-container {
     @include container;
     box-sizing: border-box;
-    padding: 10rem 0;
+    padding: 10rem rem(30px);
+    @include imediate {
+        padding: 6rem rem(30px);
+    }
 }
 .form-title {
     margin-bottom: 5.9375rem;
+    @include imediate {
+        margin-bottom: rem(32px);
+        text-align: center;
+    }
 }
 .form {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    width: 29.25rem;
+    width: rem(468px);
 }
 .main-fields {
     width: 100%;

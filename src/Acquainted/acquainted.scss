@@ -7,13 +7,19 @@
 }
 .acquainted-title {
     margin-bottom: 4.25rem;
+    @include imediate {
+        margin-bottom: rem(32px);
+        text-align: center;
+    }
 }
 .acquainted-main {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 17.8125rem;
+    @include imediate {
+        flex-direction: column;
+    }
 }
 .acquainted-pic-block {
     height: 100%;
@@ -31,6 +37,12 @@
 }
 .acquainted-descript {
     flex: 1;
+    @include imediate {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 .acquainted-descript p {
     font-size: 1rem;

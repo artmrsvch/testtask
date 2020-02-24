@@ -26,7 +26,7 @@ function UserList() {
         dispatch(getUserRequest());
     }, []);
     return (
-        <section className="section userList-section">
+        <section id="users" className="section userList-section">
             <div className="container userList-container">
                 <h2 className="title userList-title">Our cheerful users</h2>
                 <ul className="user-list">

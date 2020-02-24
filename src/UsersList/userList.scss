@@ -5,10 +5,17 @@
 }
 .userList-container {
     @include container;
-    padding: 10.125rem 5.1875rem;
+    padding: rem(162px) 5.1875rem;
+    @include tablets {
+        padding: rem(120px) rem(30px);
+    }
 }
 .userList-title {
     margin-bottom: 7.5rem;
+    @include imediate {
+        margin-bottom: rem(48px);
+        text-align: center;
+    }
 }
 .user-list {
     display: grid;
@@ -17,6 +24,9 @@
     width: 100%;
     justify-content: space-between;
     margin-bottom: 2.5rem;
+    @include imediate {
+        grid-template-columns: rem(200px) rem(200px);
+    }
 }
 .user-list__item {
     position: relative;

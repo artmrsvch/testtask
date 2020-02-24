@@ -45,6 +45,9 @@ input[type="radio" i] {
     box-sizing: border-box;
     padding: 0 30px;
     width: rem(1024px);
+    @include tablets {
+        width: rem(768px);
+    }
 }
 .title {
     font-size: 3.125rem;

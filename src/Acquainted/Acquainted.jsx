@@ -2,7 +2,7 @@ import React from "react";
 import man from "../assets/man-laptop-v1.svg";
 function Acquainted() {
     return (
-        <section className="section acquainted">
+        <section id="acqua" className="section acquainted">
             <div className="container acquainted-container">
                 <h2 className="title acquainted-title">Let's get acquainted</h2>
                 <div className="acquainted-main">

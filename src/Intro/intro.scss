@@ -4,17 +4,27 @@
     background: url(../assets/banner-photo.jpg) center center / cover no-repeat;
 }
 .intro-container {
+    padding-top: rem(60px);
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 .intro-container h1 {
-    font-size: 3.125rem;
+    font-size: rem(50px);
     color: white;
     line-height: 3.375rem;
     text-transform: uppercase;
     width: 55%;
     margin-bottom: 1.875rem;
+    @include tablets {
+        font-size: rem(40px);
+        font-weight: 400;
+        line-height: 2.9rem;
+        width: 60%;
+    }
+    @include imediate {
+        width: auto;
+    }
 }
 .intro-container p {
     font-size: 1rem;

@@ -32,7 +32,7 @@ function FormRegister() {
         dispatch(getTokenRequst());
     }, []);
     return (
-        <section className="section form-section">
+        <section id="signUp" className="section form-section">
             <div className="container form-container">
                 <h2 className="title form-title">Register to get a work</h2>
                 <Form
