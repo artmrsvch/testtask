@@ -9,12 +9,12 @@ function Header() {
 
     const handleClick = () => {
         if (!state.isGaumbOpen) {
-            document.body.style.overflow = "hidden";
+            document.body.style.overflowY = "hidden";
             gambList.style.transition = "0.3s";
             gambList.style.height = "100vh";
             setState({ isGaumbOpen: true });
         } else {
-            document.body.style.overflow = "visible";
+            document.body.style.overflowY = "visible";
             gambList.style.transition = "0.3s";
             gambList.style.height = "0";
             setState({ isGaumbOpen: false });
