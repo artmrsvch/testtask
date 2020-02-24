@@ -1,26 +1,60 @@
-import React from "react";
-import man from "../assets/man-laptop-v1.svg";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserRequest, resetUserRequest } from "../modules/actions";
 
 function UserList() {
+    const dispatch = useDispatch();
+    const { users, isLoggedIn } = useSelector(stateSelect => stateSelect);
+
+    const handleClick = () => {
+        users.links.next_url && dispatch(getUserRequest(users.links.next_url));
+    };
+    const setTooltipText = ({ target }) => {
+        if (target.offsetWidth < target.scrollWidth) {
+            const tooltip = target.classList.contains("user-list__name")
+                ? target.parentNode.children[5]
+                : target.parentNode.children[6];
+            target.style.cursor = "pointer";
+            tooltip.style.padding = "0.3125rem 0.625rem"; //иначе показыватся пустой блок из паддингов если в css
+            tooltip.textContent = target.textContent;
+        }
+    };
+    useEffect(() => {
+        isLoggedIn && dispatch(resetUserRequest());
+    }, [isLoggedIn]);
+    useEffect(() => {
+        dispatch(getUserRequest());
+    }, []);
     return (
-        <section className="section userList-section">
+        <section id="users" className="section userList-section">
             <div className="container userList-container">
                 <h2 className="title userList-title">Our cheerful users</h2>
                 <ul className="user-list">
-                    <li className="user-list__item">
-                        <div className="user-list__wrap-pic">
-                            <img className="user-list__img" src={man} alt="" />
-                        </div>
-                        <span className="user-list__name">Maximillian</span>
-                        <span className="user-list__position">
-                            Contextual advertising specialist
-                        </span>
-                        <span className="user-list__email">controldepartment@gmail</span>
-                        <span className="user-list__phone-number">+380 50 678 03 24</span>
-                    </li>
+                    {users.users &&
+                        users.users.map(({ id, name, email, phone, position, photo }) => (
+                            <li key={id} className="user-list__item">
+                                <div className="user-list__wrap-pic">
+                                    <img className="user-list__img" src={photo} />
+                                </div>
+                                <span onMouseEnter={setTooltipText} className="user-list__name">
+                                    {name}
+                                </span>
+                                <span className="user-list__position">{position}</span>
+                                <span onMouseEnter={setTooltipText} className="user-list__email">
+                                    {email}
+                                </span>
+                                <span className="user-list__phone-number">{phone}</span>
+                                <span className="tooltip tooltip-name"></span>
+                                <span className="tooltip tooltip-email"></span>
+                            </li>
+                        ))}
                 </ul>
                 <div className="btn-wrap">
-                    <button className="btn">Show more</button>
+                    {users.links.next_url && (
+                        <button onClick={handleClick} className="btn">
+                            Show more
+                        </button>
+                    )}
                 </div>
             </div>
         </section>

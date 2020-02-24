@@ -4,22 +4,55 @@
     background: url(../assets/banner-photo.jpg) center center / cover no-repeat;
 }
 .intro-container {
+    padding-top: rem(60px);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @include phones {
+        padding-top: rem(40px);
+        text-align: center;
+        align-items: center;
+    }
 }
 .intro-container h1 {
-    font-size: 3.125rem;
+    font-size: rem(50px);
     color: white;
     line-height: 3.375rem;
     text-transform: uppercase;
     width: 55%;
     margin-bottom: 1.875rem;
+    @include tablets {
+        font-size: rem(40px);
+        font-weight: 400;
+        line-height: 2.9rem;
+        width: 60%;
+    }
+    @include imediate {
+        width: auto;
+    }
+    @include phones {
+        width: 100%;
+        font-size: rem(30px);
+        line-height: 2.3rem;
+    }
 }
-.intro-container p {
+.intro__descript {
     font-size: 1rem;
     color: white;
     line-height: 1.5rem;
     width: 65%;
     margin-bottom: 1.875rem;
+
+    &_full {
+        @include phones {
+            display: none;
+        }
+    }
+    &_media {
+        display: none;
+        @include phones {
+            width: 100%;
+            display: flex;
+        }
+    }
 }

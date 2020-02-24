@@ -1,0 +1,34 @@
+.modal {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.9);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 11;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-container {
+    width: rem(395px);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    z-index: 12;
+    height: rem(190px);
+    background-color: white;
+    color: black;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 20px 15px 15px 15px;
+}
+.modal__title {
+    font-size: rem(24px);
+}
+.modal__text {
+    &_error {
+        border-top: 2px solid red;
+    }
+}

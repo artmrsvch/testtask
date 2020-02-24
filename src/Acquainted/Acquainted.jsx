@@ -2,7 +2,7 @@ import React from "react";
 import man from "../assets/man-laptop-v1.svg";
 function Acquainted() {
     return (
-        <section className="section acquainted">
+        <section id="acqua" className="section acquainted">
             <div className="container acquainted-container">
                 <h2 className="title acquainted-title">Let's get acquainted</h2>
                 <div className="acquainted-main">
@@ -26,9 +26,9 @@ function Acquainted() {
                             (gulp/webpack) you will get bonus points as well. Slice service
                             directory page P​SD mockup​ into HTML5/CSS3.
                         </p>
-                        <button className="btn btn_no-background" type="button">
+                        <a href="#signUp" className="btn btn_no-background" type="button">
                             Sign up now
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
